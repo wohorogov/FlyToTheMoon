@@ -1,4 +1,7 @@
 package control_center;
 
-public class SpacePort {
+public interface SpacePort {
+    void port();
+    void methodTest();
+    void launch();
 }
