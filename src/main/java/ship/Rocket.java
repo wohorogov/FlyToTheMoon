@@ -29,29 +29,35 @@ public class Rocket {
         private double mass;
         private double fuelMass;
         private double speedGas;
-        private double workTime;
-        private double fuelCombutionSpeed;
+        private int workTime;
+        private double fuelConsumptionSpeed;
 
         public double getSpeedGas() {
             return speedGas;
         }
 
-        public double getFuelCombutionSpeed() {
-            return fuelCombutionSpeed;
+        public double getFuelConsumptionSpeed() {
+            return fuelConsumptionSpeed;
         }
 
-        public RocketStage(double mass, double fuelMass, double workTime, double speedGas, double fuelCombutionSpeed) {
+        public RocketStage(double mass, double fuelMass, int workTime, double speedGas, double fuelConsumptionSpeed) {
             this.num = seq++;
             this.mass = mass;
             this.speedGas = speedGas;
             this.fuelMass = fuelMass;
             this.workTime = workTime;
-            this.fuelCombutionSpeed = fuelCombutionSpeed;
+            this.fuelConsumptionSpeed = fuelConsumptionSpeed;
             //Добавление в массив текущей ступени
             rocketStages.add(this);
         }
         public double getAllMass() {
             return this.mass + this.fuelMass;
+        }
+        public void minusTime(double minusTime) {
+            this.workTime -= minusTime;
+        }
+        public int getRemainingTime() {
+            return workTime;
         }
         @Override
         public void launch() {
@@ -62,13 +68,13 @@ public class Rocket {
         private double mass;
         private double fuelMass;
         private double speedGas;
-        private double fuelCombutionSpeed;
+        private double fuelConsumptionSpeed;
 
-        public RocketBrakeStage(double mass, double fuelMass, double speedGas, double fuelCombutionSpeed) {
+        public RocketBrakeStage(double mass, double fuelMass, double speedGas, double fuelConsumptionSpeed) {
             this.mass = mass;
             this.fuelMass = fuelMass;
             this.speedGas = speedGas;
-            this.fuelCombutionSpeed = fuelCombutionSpeed;
+            this.fuelConsumptionSpeed = fuelConsumptionSpeed;
 
             brake = this;
         }
@@ -105,5 +111,8 @@ public class Rocket {
 
     public void setCoordinate(double coordinate) {
         this.coordinate = coordinate;
+    }
+    public void deleteRocketStage() {
+        rocketStages.remove(0);
     }
 }
