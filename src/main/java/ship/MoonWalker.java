@@ -1,4 +1,4 @@
-package moon_walker;
+package ship;
 
 public interface MoonWalker {
     void moveForward();
